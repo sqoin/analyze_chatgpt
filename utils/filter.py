@@ -16,6 +16,7 @@ def filter(name, root, config):
             escaped_content = escape_content(content)
             logging.debug(f"Filtered file: {file_path}")  # Log the filtered file
             return escaped_content, file_path
-    logging.debug(f"Skipped file: {os.path.join(root, name)}")  # Log the skipped file
+    else:
+        logging.debug(f"Excluded file: {os.path.join(root, name)}")  # Log the excluded file
     return None, None
 

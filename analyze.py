@@ -31,10 +31,16 @@ logging.info(f"Output directory: {output_dir}")
 
 # Loop through all files in the directory to analyze
 for root, dirs, files in get_file_list(directory_to_analyze):
-    for name in files:
-        escaped_content, file_path = filter(name, root, config)
-        if escaped_content:
-            try:
-                process_filtered_file(escaped_content, file_path, output_dir)
-            except Exception as e:
-                logging.error(f"An error occurred while processing {file_path}: {e}")  # Log the error
+    if not files:
+        logging.warning(f"No files found in directory: {root}")
+    else:
+        for name in files:
+            escaped_content, file_path = filter(name, root, config)
+            if escaped_content:
+                try:
+                    process_filtered_file(escaped_content, file_path, output_dir)
+                except Exception as e:
+                    logging.error(f"An error occurred while processing {file_path}: {e}")  # Log the error
+
+if not os.listdir(output_dir):
+    logging.warning(f"No files were analyzed.")
