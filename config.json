@@ -3,5 +3,7 @@
     "project_dir": "Where your project is located",
     "authorization": "Your open ai key",
     "request": "a simple request like (Find all problems here)",
-    "openai-model":"Your open ai model"
+    "openai-model":"gpt-3.5-turbo",
+    "files_to_be_included": "*.py", 
+    "files_to_be_excluded": "*.chatgpt , .gitignore , package.json " 
 }
