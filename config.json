@@ -1,0 +1,7 @@
+
+{
+    "project_dir": "Where your project is located",
+    "authorization": "Your open ai key",
+    "request": "a simple request like (Find all problems here)",
+    "openai-model":"Your open ai model"
+}
