@@ -4,15 +4,9 @@ This script analyzes a directory of code files and uses the OpenAI model to gene
 # How to use
 
     1.Clone this repository to your local machine.
-    2.Install the necessary dependencies by running 
-    ```
-    pip3 install -r requirements.txt
-    ```
+    2.Install the necessary dependencies by running pip3 install -r requirements.txt
     3.Modify the config.json file.
-    4.Run the script with the command
-    ```
-    python3 -B analyze.py
-    ```
+    4.Run the script with the command  python3 -B analyze.py
     5.The generated .chatgpt files will be written to a new directory named after the original directory.
 
 # configuration
