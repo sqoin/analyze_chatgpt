@@ -1,8 +1,15 @@
 import os
+import logging
 from utils.config import read_config
 from utils.file_handling import  get_file_list
 from utils.filter import filter
 from utils.process_filtered_file import process_filtered_file
+from logger_config import configure_logger 
+
+
+
+# Configure the logger
+configure_logger()
 
 # Load the configuration
 config = read_config()
@@ -18,6 +25,9 @@ if not os.path.exists(output_dir):
     os.makedirs(output_dir)
 
 
+# Log the directory being analyzed and the output directory
+logging.info(f"Analyzing directory: {directory_to_analyze}")
+logging.info(f"Output directory: {output_dir}")
 
 # Loop through all files in the directory to analyze
 for root, dirs, files in get_file_list(directory_to_analyze):
@@ -26,5 +36,6 @@ for root, dirs, files in get_file_list(directory_to_analyze):
         if escaped_content:
             try:
                 process_filtered_file(escaped_content, file_path, output_dir)
+                logging.info(f"Processed file: {file_path}")  # Log the processed file
             except Exception as e:
-                print("An error occurred while processing {}:{}".format(file_path, e))
+                logging.error(f"An error occurred while processing {file_path}: {e}")  # Log the error
