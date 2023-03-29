@@ -36,6 +36,5 @@ for root, dirs, files in get_file_list(directory_to_analyze):
         if escaped_content:
             try:
                 process_filtered_file(escaped_content, file_path, output_dir)
-                logging.info(f"Processed file: {file_path}")  # Log the processed file
             except Exception as e:
                 logging.error(f"An error occurred while processing {file_path}: {e}")  # Log the error
