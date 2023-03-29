@@ -15,7 +15,7 @@ def make_request(content):
     """Makes a POST request with the given content and returns the response."""
     headers = {
         "Content-Type": "application/json",
-        "Authorization": read_config()["authorization"],
+        "Authorization": "Bearer "+read_config()["authorization"],
     }
     data = {
         "model": read_config()["openai-model"],
