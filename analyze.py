@@ -1,3 +1,4 @@
+import fnmatch
 import os
 import logging
 from utils.config import read_config
@@ -26,18 +27,31 @@ if not os.path.exists(output_dir):
 logging.info(f"Analyzing directory: {directory_to_analyze}")
 logging.info(f"Output directory: {output_dir}")
 
-# Loop through all files in the directory to analyze, including subdirectories
-for root, dirs, files in get_file_list(directory_to_analyze):
-    if not files:
-        logging.warning(f"No files found in directory: {root}")
-    else:
-        for name in files:
-            escaped_content, file_path = filter(name, root, config)
-            if escaped_content:
-                try:
-                    process_filtered_file(escaped_content, file_path, output_dir)
-                except Exception as e:
-                    logging.error(f"An error occurred while processing {file_path}: {e}")  # Log the error
+# Loop through all requests in the configuration file
+for request in config["requests"]:
+    # Log the security criteria and the request being analyzed
+    logging.info(f"Security criteria: {request['security criteria']}")
+    logging.info(f"Analyzing request: {request['request']}")
+
+    # Loop through all files in the directory to analyze, including subdirectories
+    for root, dirs, files in get_file_list(directory_to_analyze):
+        if not files:
+            logging.warning(f"No files found in directory: {root}")
+        else:
+            for name in files:
+                full_path = os.path.join(root, name)
+                # Check if the file is excluded by the config
+                if any(fnmatch.fnmatch(name, pattern) for pattern in request["files_to_be_excluded"].split(",")):
+                    continue
+
+                # Check if the file is included by config
+                if request["files_to_be_included"] == "*" or any(fnmatch.fnmatch(name, pattern) for pattern in request["files_to_be_included"].split(",")):
+                    escaped_content, file_path = filter(name, root, request)
+                    if escaped_content:
+                        try:
+                            process_filtered_file(escaped_content, file_path, output_dir)
+                        except Exception as e:
+                            logging.error(f"An error occurred while processing {file_path}: {e}")  # Log the error
 
 if not os.listdir(output_dir):
     logging.warning(f"No files were analyzed.")
