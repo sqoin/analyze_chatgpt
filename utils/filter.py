@@ -1,10 +1,11 @@
+
 import fnmatch
 import os
 import logging  # Import the logging module
 from utils.file_handling import read_file_content
 from utils.request_handling import escape_content
 
-def filter(name, root, request):
+def filter(name, root,  request):
     files_to_be_excluded = request["files_to_be_excluded"]
     file_exclude_patterns = [f_pattern.strip() for f_pattern in files_to_be_excluded.split(",")]
 
@@ -19,4 +20,3 @@ def filter(name, root, request):
     else:
         logging.debug(f"Excluded file: {os.path.join(root, name)}")  # Log the excluded file
     return None, None
-
