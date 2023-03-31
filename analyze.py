@@ -1,4 +1,3 @@
-import fnmatch
 import os
 import logging
 from utils.config import read_config

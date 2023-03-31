@@ -8,8 +8,8 @@ from utils.request_handling import escape_content
 def filter(name, root,  request):
     files_to_be_excluded = request["files_to_be_excluded"]
     file_exclude_patterns = [f_pattern.strip() for f_pattern in files_to_be_excluded.split(",")]
-
-    if not any(fnmatch.fnmatch(name, pattern) for pattern in file_exclude_patterns) and (request["files_to_be_included"] == "*" or any(fnmatch.fnmatch(name, pattern) for pattern in request["files_to_be_included"].split(","))):
+    
+    if not any(fnmatch.fnmatch(name, pattern) for pattern in file_exclude_patterns) and not os.path.basename(name) in file_exclude_patterns:
         file_path = os.path.join(root, name)
         if os.path.isfile(file_path):
             content = read_file_content(file_path)
