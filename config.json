@@ -1,14 +1,19 @@
-
 {
     "project_dir": "Where your project is located",
     "authorization": "Your open ai key",
-    "request": "a simple request like (Find all problems here)",
     "openai-model":"gpt-3.5-turbo",
-    "files_to_be_included": "*.py", 
-    "files_to_be_excluded": "*.chatgpt , .gitignore , package.json " ,
-    "output_extension": "write here the extension of your analyzed files example (.chatGPT) ",
-    "dist_dir": "write here the name of the output directory example (analyzedFiles) "
+    "requests":[
+        {   "security criteria":"right your security criteriaHere if you have one (example : authentification creteria)",
+            "request": "a simple request like (Find all problems here)",
+            "files_to_be_included": "write the files you want to inculde and analyze here (example: *.py , *js)", 
+            "files_to_be_excluded": "write the files you want to exclude and not to analyze here (example: *.chatgpt , .gitignore , package.json) " ,
+            "dist_dir": "write here the name of the output directory example (analyzedFiles) ",
+            "output_extension": "write here the extension of your analyzed files example (.chatGPT) "
+        }
+     
+    ]
 }
+
 
 
 
