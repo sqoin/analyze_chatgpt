@@ -11,13 +11,13 @@ def read_file_content(file_path):
         return content
 
 
-def write_file_content(file_path, content, output_dir=None):
+def write_file_content(file_path, content,request, output_dir=None ):
     """Writes the given content to a .chatgpt file with the same name as the original file."""
     if not output_dir:
         output_dir = os.path.dirname(file_path)
     dir_path, filename = os.path.split(file_path)
     filename, extension = os.path.splitext(filename)
-    chatgpt_file_path = os.path.join(output_dir, ("{}"+read_config()["output_extension"]).format(filename))
+    chatgpt_file_path = os.path.join(output_dir, ("{}"+request["output_extension"]).format(filename))
 
     with open(chatgpt_file_path, "w") as out:
         out.write(content)
@@ -25,18 +25,18 @@ def write_file_content(file_path, content, output_dir=None):
 
  
 
-def get_file_list(dir_path):
+def get_file_list(dir_path , request):
+
     """Yields (root, dirs, files) tuples for all files in the directory that are not ignored by .gitignore. 
     Get all the files with specific extensions defined in the 'files_to_be_included' config."""
     gitignore_path = os.path.join(dir_path, ".gitignore")
 
-    files_to_be_excluded = read_config()["files_to_be_excluded"]
+    files_to_be_excluded = request["files_to_be_excluded"]
     exclude_patterns = files_to_be_excluded.split(",")
     extensions_excluded = [os.path.splitext(pattern.strip())[1] for pattern in exclude_patterns]
     logging.warning(f"Files will be excluded=> {', '.join(extensions_excluded)} ")
 
-
-    files_to_be_included = read_config()["files_to_be_included"]
+    files_to_be_included = request["files_to_be_included"]
 
     if files_to_be_included != "*":
         patterns = files_to_be_included.split(",")
@@ -68,4 +68,3 @@ def get_file_list(dir_path):
 
     
     
-  

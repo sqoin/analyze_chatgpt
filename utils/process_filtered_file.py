@@ -3,7 +3,7 @@ from utils.request_handling import make_request, extract_content
 import logging  # Import the logging module
 import os
 
-def process_filtered_file(escaped_content, file_path, output_dir, directory_to_analyze):
+def process_filtered_file(escaped_content, file_path, output_dir, directory_to_analyze , request):
     response = make_request(escaped_content)
     response.raise_for_status()  # Raise an exception if the request was unsuccessful
     extracted_content = extract_content(response)
@@ -20,6 +20,6 @@ def process_filtered_file(escaped_content, file_path, output_dir, directory_to_a
 
     # Save the analyzed file to the output subdirectory
     output_file_path = os.path.join(output_subdir, os.path.basename(file_path))
-    write_file_content(output_file_path, extracted_content)
+    write_file_content(output_file_path, extracted_content , request)
 
     logging.info(f"Processed file: {file_path}")  # Log the processed file

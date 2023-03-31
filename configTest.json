@@ -1,0 +1,31 @@
+{
+    "project_dir": "your directory",
+    "authorization": "your oauth key",
+    "openai-model":"gpt-3.5-turbo",
+    "requests":[
+        {   "security criteria":"right your security criteriaHere if you have one (example : authentification creteria)",
+            "request": "Find problems here :",
+            "files_to_be_included": "*.js ", 
+            "files_to_be_excluded": "*.chatgpt , .gitignore , package.json " ,
+            "dist_dir": "analyzedFilesProblems",
+            "output_extension": ".chatGPT"
+        },
+        { "security criteria":"right your security criteriaHere if you have one (example : authentification creteria)",
+        "request": "check me the security of each file",
+        "files_to_be_included": "*.py , *.ts", 
+        "files_to_be_excluded": "*.chatgpt , .gitignore , package.json " ,
+        "dist_dir": "checkSecurity",
+        "output_extension": ".chatGPT"
+    }
+     
+    ]
+}
+
+
+
+
+
+
+
+
+
