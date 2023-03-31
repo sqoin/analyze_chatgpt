@@ -15,8 +15,9 @@ config = read_config()
 # Set the directory to analyze from the configuration
 directory_to_analyze = config["project_dir"]
 
-# Set the output directory for the analyzed files
-output_dir = os.path.join(directory_to_analyze, f"{os.path.basename(directory_to_analyze)}_chatgpt_analyze")
+# Set the output directory for the analyzed files 
+# old : f"{os.path.basename(directory_to_analyze)}_chatgpt_analyze"
+output_dir = os.path.join(directory_to_analyze, config["dist_dir"])
 
 # Create output directory if it doesn't exist
 if not os.path.exists(output_dir):
@@ -35,7 +36,7 @@ for root, dirs, files in get_file_list(directory_to_analyze):
             escaped_content, file_path = filter(name, root, config)
             if escaped_content:
                 try:
-                    process_filtered_file(escaped_content, file_path, output_dir)
+                    process_filtered_file(escaped_content, file_path, output_dir, directory_to_analyze)
                 except Exception as e:
                     logging.error(f"An error occurred while processing {file_path}: {e}")  # Log the error
 
