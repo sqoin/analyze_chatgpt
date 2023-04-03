@@ -4,7 +4,7 @@ import logging  # Import the logging module
 import os
 
 def process_filtered_file(escaped_content, file_path, output_dir, directory_to_analyze , request):
-    response = make_request(escaped_content)
+    response = make_request(escaped_content ,  request)
     response.raise_for_status()  # Raise an exception if the request was unsuccessful
     extracted_content = extract_content(response)
 

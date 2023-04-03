@@ -5,6 +5,12 @@ import logging  # Import the logging module
 from utils.file_handling import read_file_content
 from utils.request_handling import escape_content
 
+
+def read_request_file(request_file_name):
+    with open(request_file_name, "r") as file:
+        content = file.read()
+    return content
+
 def filter(name, root,  request):
     files_to_be_excluded = request["files_to_be_excluded"]
     file_exclude_patterns = [f_pattern.strip() for f_pattern in files_to_be_excluded.split(",")]
@@ -13,7 +19,8 @@ def filter(name, root,  request):
         file_path = os.path.join(root, name)
         if os.path.isfile(file_path):
             content = read_file_content(file_path)
-            content = request["request"] + " {}".format(content)
+            request_content = read_request_file(request["request"])
+            content = request_content + " {}".format(content)
             escaped_content = escape_content(content)
             logging.debug(f"Filtered file: {file_path}")  # Log the filtered file
             return escaped_content, file_path

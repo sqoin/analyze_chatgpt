@@ -15,13 +15,27 @@ You need to make changes on your 'config.json'.
 
 ```
 
-{
     "project_dir": ".",
     "authorization": "Your open ai key", /* check https://platform.openai.com/account/api-keys */
-    "request": "a simple request like (Find all problems here)",
     "openai-model":"gpt-3.5-turbo", /* or GPT-4 */
-    "files_to_be_included": "*", /* could be *.js, *.ts */
-    "files_to_be_excluded": "*.chatgpt" /* this pattern will be added to .gitignore pattern if it exists */
+    "requests":[
+        {   "security criteria":"",
+            "request": "the file where you write your prompt", /* the file should be on your directory */
+            "files_to_be_included": "*", /* could be *.js, *.ts */
+            "files_to_be_excluded": "*.chatgpt" /* this pattern will be added to .gitignore pattern if it exists */,
+            "dist_dir": "your output directory",
+            "output_extension": "your output file extension example : .chatGPT",
+            "rules":"the file where you write your rules,  example : assistant_rules_Analyzing_code.txt"
+        }
+     
+    ]
+
+{
+   
+    
+    
+   
+
 }
 
 ```
