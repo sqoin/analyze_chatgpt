@@ -4,11 +4,12 @@
     "openai-model":"gpt-3.5-turbo",
     "requests":[
         {   "security criteria":"right your security criteriaHere if you have one (example : authentification creteria)",
-            "request": "a simple request like (Find all problems here)",
+            "request": "the file where you write your prompt , the file should be on your directory example : analyze_prompt.txt", 
             "files_to_be_included": "write the files you want to inculde and analyze here (example: *.py , *js)", 
             "files_to_be_excluded": "write the files you want to exclude and not to analyze here (example: *.chatgpt , .gitignore , package.json) " ,
             "dist_dir": "write here the name of the output directory example (analyzedFiles) ",
-            "output_extension": "write here the extension of your analyzed files example (.chatGPT) "
+            "output_extension": "write here the extension of your analyzed files example (.chatGPT) ",
+            "rules": "the file where you write your rules , the file should be on your directory example : analyze_rules.txt"
         }
      
     ]
