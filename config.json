@@ -9,7 +9,8 @@
             "files_to_be_excluded": "write the files you want to exclude and not to analyze here (example: *.chatgpt , .gitignore , package.json) " ,
             "dist_dir": "write here the name of the output directory example (analyzedFiles) ",
             "output_extension": "write here the extension of your analyzed files example (.chatGPT) ",
-            "rules": "the file where you write your rules , the file should be on your directory example : analyze_rules.txt"
+            "rules": "the file where you write your rules , the file should be on your directory example : analyze_rules.txt",
+            "collecting_data_output":"write here the name of the file you want to collect data on , excample : analyze_collecting_file"
         }
      
     ]
