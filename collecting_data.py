@@ -95,3 +95,4 @@ for req in requests:
     
 
     collecting_data_excel(project_dir ,req , data )
+    collecting_data_csv(project_dir ,req , data )
