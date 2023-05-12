@@ -1,0 +1,15 @@
+i want you to extract each function on the file . function may start with key word 'function' , 'async function' , '_exports' and give me a full comments of it so we can understand what it do exactly .
+
+ - StartLigne is the ligne number where the function start
+ - EndLigne is the ligne number where the function finish
+ - i need the description to be written on the same ligne no space is allowed
+The result must be :
+[
+{
+    "Function" : "" , 
+    "StartLigne":"",
+    "EndLigne":"",
+    "Description" : ""  
+  
+}
+]
